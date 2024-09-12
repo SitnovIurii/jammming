@@ -12,6 +12,8 @@ const Tracklist = (props) => {
                     addTrack={props.addTrack}
                     isRemoval={props.isRemoval}
                     removeTrack={props.removeTrack}
+                    tracksToBeAdded={props.tracksToBeAdded}
+                    tracksToBeRemoved={props.tracksToBeRemoved}
                 /> 
             ))}
             

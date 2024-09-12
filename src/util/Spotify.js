@@ -110,6 +110,38 @@ const Spotify = {
     });
   },
 
+  async addOrRemoveTracksIntoSelectedPlaylist(playlistID, tracksToAdd, tracksToRemove) {
+    const accessToken = this.getAccessToken();
+    const addItemsToPlaylistEndpoint = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`
+    if(tracksToAdd.length > 0) {
+      const trackURIs = tracksToAdd.map((track) => "spotify:track:" + track.id)
+      fetch(addItemsToPlaylistEndpoint, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + accessToken,
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+          "uris": trackURIs
+        })
+      })
+    }
+    if(tracksToRemove.length > 0) {
+      const trackURI = tracksToRemove.map((track) => ({"uri": `spotify:track:${track.id}`}))
+      fetch(addItemsToPlaylistEndpoint, {
+        method: "DELETE",
+        headers: {
+          Authorization: 'Bearer ' + accessToken,
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(
+          {
+            "tracks": trackURI
+          })
+      })
+    }
+  },
+
   async getUserPlaylist() {
     const accessToken = this.getAccessToken();
     const user_id = await this.getCurrentUserId();

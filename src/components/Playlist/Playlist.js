@@ -5,9 +5,15 @@ import "./Playlist.css";
 function Playlist(props) {
 
     //takes name from input within component and pass it to App handler
+
     const handlePlaylistSaveWrapper = () => {
-        const playlistName = document.querySelector('#playlistName');
-        props.onPlaylistSave(playlistName.value);
+        if(!props.playlistID){
+            const playlistName = document.querySelector('#playlistName');
+            props.onPlaylistSave(playlistName.value);
+        } else {
+            console.log(props.playlistID)
+            props.handleAddAndRemove()
+        }
     }
 
     return (
@@ -29,6 +35,8 @@ function Playlist(props) {
             tracklistData={props.playlist} 
             isRemoval={true}
             removeTrack={props.removeTrack}
+            tracksToBeAdded={props.tracksToBeAdded}
+            tracksToBeRemoved={props.tracksToBeRemoved}
         />
     </div>
     )

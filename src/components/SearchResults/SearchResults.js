@@ -9,6 +9,8 @@ const SearchResults = (props) => {
             <Tracklist 
                 tracklistData={props.searchResult}
                 addTrack={props.addTrack}
+                tracksToBeAdded={props.tracksToBeAdded}
+                tracksToBeRemoved={props.tracksToBeRemoved}
             />
         </div>
     );

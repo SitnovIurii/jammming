@@ -19,6 +19,22 @@ function App() {
 
   //Playlist control
   const [ playlistTracks, setPlaylist ] = useState([]);
+  //state which adds tracks everytime we adding tracks to selected(already exist) playlist
+  const [ tracksToAdd, setTracksToAdd ] = useState([]);
+  //state which adds tracks which we want to remove from selected playlist
+  const [ tracksToRemove, setTracksToRemove ] = useState([]);
+  //playlist ID used to decide do we work with existed playlist or not
+  const [ playlistID, setPlaylistID ] = useState("");
+
+  function handleSelectPlaylist(id){
+    if(id) {
+      setPlaylistID(id);
+      Spotify.getPlaylist(id).then(setPlaylist);
+    } else {
+      setPlaylistID("")
+      setPlaylist([])
+    }
+  }
 
   function addTrack(trackToAdd) {
     // add or remove, depending on the state
@@ -30,27 +46,38 @@ function App() {
       (existingTrack) => trackToAdd.id === existingTrack.id
     );
     if (filterOnExistingTrack.length === 0){
-    setPlaylist((prev) => [...prev, trackToAdd])
+      setPlaylist((prev) => [...prev, trackToAdd])
+      if(playlistID) {
+        setTracksToAdd((prev) => [...prev, trackToAdd])
+      }
     };
   } 
 
   function removeTrack(trackToRemove) {
     setPlaylist(playlistTracks.filter((track) => 
       trackToRemove.id !== track.id))
+    if(playlistID) {
+      setTracksToRemove((prev) => [...prev, trackToRemove])
+    }
   }
 
   const [ playlistName, setPlaylistName ] = useState("");
+
   function handlePlaylistSave(playlistName) {
     Spotify.createNewPlaylist(playlistName, playlistTracks);
   }
   
-  function handleSelectPlaylist(id){
-    if(id) {
-      Spotify.getPlaylist(id).then(setPlaylist);
-    } else {
-      setPlaylist([])
-    }
+  function handleAddAndRemoveFetch() {
+    Spotify.addOrRemoveTracksIntoSelectedPlaylist(playlistID, tracksToAdd, tracksToRemove);
+    setTracksToAdd([]);
+    setTracksToRemove([]);
   }
+
+  //function handleSaveToSelectedPlaylist(playlistID, play)
+
+  //saving id in state to handle addition and removing tracks from selected playlist
+
+
 
   return (
     <div className="h-full px-96 py-52 bg-cover bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500" style={{ height: "100%"}}>
@@ -71,9 +98,11 @@ function App() {
             <Playlist
               playlistName={playlistName}
               playlistNameInput={setPlaylistName}
+              playlistID={playlistID}
               playlist={playlistTracks}
               onPlaylistSave={handlePlaylistSave} 
               removeTrack={removeTrack}
+              handleAddAndRemove={handleAddAndRemoveFetch}
             />
           </div>
         </div>
