@@ -35,8 +35,6 @@ function Playlist(props) {
             tracklistData={props.playlist} 
             isRemoval={true}
             removeTrack={props.removeTrack}
-            tracksToBeAdded={props.tracksToBeAdded}
-            tracksToBeRemoved={props.tracksToBeRemoved}
         />
     </div>
     )
