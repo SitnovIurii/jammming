@@ -18,10 +18,12 @@ function Playlist(props) {
 
     return (
     <div id="Playlist" className="w-64 flex flex-col justify-center items-center">
-        <form onSubmit={handlePlaylistSaveWrapper} className="flex flex-col items-center w-52">
+        <form onSubmit={handlePlaylistSaveWrapper} 
+            className="flex flex-col items-center w-52"
+        >
             <input 
                 id="playlistName"
-                className="block w-full rounded-md border-0 py-0.5 pl-6 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className={"w-full rounded-md border-0 py-0.5 pl-6 pr-6 mb-2 text-gray-900 bg-gray-300 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:bg-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" + " " +(props.playlistID ? "hidden" : "block")}
                 type="text" 
                 placeholder="New Playlist"
                 onChange={({target}) => props.playlistNameInput(target.value)}
