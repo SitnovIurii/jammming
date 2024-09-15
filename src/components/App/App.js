@@ -61,10 +61,8 @@ function App() {
     }
   }
 
-  const [ playlistName, setPlaylistName ] = useState("");
-
   function handlePlaylistSave(playlistName) {
-    Spotify.createNewPlaylist(playlistName, playlistTracks);
+    Spotify.createNewPlaylist(playlistName, playlistTracks).then(Spotify.getUserPlaylists());
   }
   
   function handleAddAndRemoveFetch() {
@@ -72,12 +70,6 @@ function App() {
     setTracksToAdd([]);
     setTracksToRemove([]);
   }
-
-  //function handleSaveToSelectedPlaylist(playlistID, play)
-
-  //saving id in state to handle addition and removing tracks from selected playlist
-
-
 
   return (
     <div className="h-full px-96 py-52 bg-cover bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500" style={{ height: "100%"}}>
@@ -92,7 +84,6 @@ function App() {
           />
           <div className="flex flex-col items-center w-64">
             <PlaylistList
-              playlistNameOnSelect={setPlaylistName}
               onPlaylistSelect={handleSelectPlaylist}
             />
             <Playlist

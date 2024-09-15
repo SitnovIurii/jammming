@@ -9,17 +9,28 @@ class PlaylistList extends Component {
         }
     }
 
-    async componentWillMount() {
-        this.setState({ playlistList: await Spotify.getUserPlaylist() })
+    async componentDidMount() {
+        this.setState({ playlistList: await Spotify.getUserPlaylists() })
     }
 
     handleSelectPlaylistWrapper = (e) => { //handling logic of selector component
         const index = e.target.selectedIndex;
         const el = e.target.childNodes[index];
         const option =  el.getAttribute('id');
-        const playlistName = e.target.value;
-        this.props.playlistNameOnSelect(playlistName); //pushing playlist name to App state
         this.props.onPlaylistSelect(option); //pushing choosed playlist tracks to App state
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        // Rendering the component only if 
+        // passed props value is changed
+    
+        if (nextState.state !== this.state.playlistList) {
+            console.log("I'm called")
+            return true;
+        } else {
+            console.log("I'm called but nothing changed")
+            return false;
+        }
     }
 
     render() {

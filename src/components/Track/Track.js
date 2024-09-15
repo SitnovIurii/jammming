@@ -43,5 +43,5 @@ function Track(props) {
         </div>
     )
 }
-//            <h3>{props.track.album}</h3>
+
 export default Track;
