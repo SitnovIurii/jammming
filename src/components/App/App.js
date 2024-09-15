@@ -87,8 +87,6 @@ function App() {
               onPlaylistSelect={handleSelectPlaylist}
             />
             <Playlist
-              playlistName={playlistName}
-              playlistNameInput={setPlaylistName}
               playlistID={playlistID}
               playlist={playlistTracks}
               onPlaylistSave={handlePlaylistSave} 
