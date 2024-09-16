@@ -17,39 +17,83 @@ function App() {
     Spotify.search(query).then(setSearchResult);
   }
 
-  //Playlist control
-  const [ playlistTracks, setPlaylist ] = useState([]);
+  // Playlist control to 
+  const [ playlistShownInUI, setPlaylistShownInUI ] = useState([]);
 
+  // State which adds tracks everytime we adding tracks to selected(already exist) playlist
+  const [ tracksToAdd, setTracksToAdd ] = useState([]);
+
+  // State which adds tracks which we want to remove from selected playlist
+  const [ tracksToRemove, setTracksToRemove ] = useState([]);
+  // Playlist ID used to decide do we work with existed playlist or not
+
+  const [ playlistID, setPlaylistID ] = useState("");
+
+  function handleSelectPlaylist(id){
+    if(id) {
+      setPlaylistID(id);
+      Spotify.getPlaylist(id).then(setPlaylistShownInUI);
+    } else {
+      setPlaylistID("")
+      setPlaylistShownInUI([])
+    }
+  }
+
+  /*
+    Add or remove, depending on the state.
+    If we add a track with same key React causes a alert
+    to prevent a problems with removing a tracks from playlist
+    we add a filter on our existing playlist thus prevent 
+    addition same key tracks
+  */ 
   function addTrack(trackToAdd) {
-    // add or remove, depending on the state
-    // if we add a track with same key React causes a alert
-    // to prevent a problems with removing a tracks from playlist
-    // we add a filter on our existing playlist thus prevent 
-    // addition same key tracks
-    const filterOnExistingTrack = playlistTracks.filter(
+    const isTrackAlreadyWithinUI = playlistShownInUI.some(
       (existingTrack) => trackToAdd.id === existingTrack.id
-    );
-    if (filterOnExistingTrack.length === 0){
-    setPlaylist((prev) => [...prev, trackToAdd])
-    };
+    ); // true or false
+
+    if (isTrackAlreadyWithinUI) {
+      // Track already exists in the playlist OR is going to be added; ignore
+    } else {
+      // Add track to the UI
+      setPlaylistShownInUI((prev) => [...prev, trackToAdd]);
+      // Add track to the hidden state that will be used by Spotify utils
+      setTracksToAdd((prev) => [...prev, trackToAdd]);
+    }
   } 
 
   function removeTrack(trackToRemove) {
-    setPlaylist(playlistTracks.filter((track) => 
+    // This will be true for:
+    // 1. All tracks in the new playlist
+    // 2. To-be-added tracks in the existing playlist
+    const isTrackAlreadyInTracksToAdd = tracksToAdd.some(
+      (existingTrack) => trackToRemove.id === existingTrack.id
+    ); 
+
+    setPlaylistShownInUI(playlistShownInUI.filter((track) => 
       trackToRemove.id !== track.id))
+
+    if (isTrackAlreadyInTracksToAdd) {
+      // This is a new track that does NOT exist in the playlist yet
+      // But is already present in the tracksToAdd
+
+      setTracksToAdd(tracksToAdd.filter((track) => 
+        trackToRemove.id !== track.id))
+    } else {
+      // This is a track that is already IN the playlist
+      // 2. Add to tracksToRemove
+
+      setTracksToRemove((prev) => [...prev, trackToRemove]);
+    }
   }
 
-  const [ playlistName, setPlaylistName ] = useState("");
   function handlePlaylistSave(playlistName) {
-    Spotify.createNewPlaylist(playlistName, playlistTracks);
+    Spotify.createNewPlaylist(playlistName, tracksToAdd);
   }
   
-  function handleSelectPlaylist(id){
-    if(id) {
-      Spotify.getPlaylist(id).then(setPlaylist);
-    } else {
-      setPlaylist([])
-    }
+  function handleAddAndRemoveFetch() {
+    Spotify.addOrRemoveTracksIntoSelectedPlaylist(playlistID, tracksToAdd, tracksToRemove);
+    setTracksToAdd([]);
+    setTracksToRemove([]);
   }
 
   return (
@@ -65,15 +109,14 @@ function App() {
           />
           <div className="flex flex-col items-center w-64">
             <PlaylistList
-              playlistNameOnSelect={setPlaylistName}
               onPlaylistSelect={handleSelectPlaylist}
             />
             <Playlist
-              playlistName={playlistName}
-              playlistNameInput={setPlaylistName}
-              playlist={playlistTracks}
+              playlistID={playlistID}
+              playlist={playlistShownInUI}
               onPlaylistSave={handlePlaylistSave} 
               removeTrack={removeTrack}
+              handleAddAndRemove={handleAddAndRemoveFetch}
             />
           </div>
         </div>

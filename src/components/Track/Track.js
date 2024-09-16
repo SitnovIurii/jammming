@@ -2,8 +2,8 @@ import React from "react";
 
 function Track(props) {
 
-    //handling an addition and removing
-    //props from App and Tracklist
+    // Handling an addition and removing
+    // props from App and Tracklist
 
     const handleAddTrack = () => {
         props.addTrack(props.track)
@@ -13,8 +13,8 @@ function Track(props) {
         props.removeTrack(props.track)
     }
 
-    //button render logic, if user wants to add to or delete song from
-    //playlist
+    // Button render logic, if user wants to add to or delete song from
+    // playlist
 
     const buttonRender = () => {
         if (props.isRemoval){
@@ -43,5 +43,5 @@ function Track(props) {
         </div>
     )
 }
-//            <h3>{props.track.album}</h3>
+
 export default Track;
