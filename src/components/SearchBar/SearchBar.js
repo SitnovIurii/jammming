@@ -3,10 +3,10 @@ import "./SearchBar.css";
 
 function SearchBar(props){
 
-    //state of query for handling memorizing input
+    // State of query for handling memorizing input
     const [ query, setQuery ] = useState(window.sessionStorage.getItem("query"));
-    //logic to connect recieving input value and store it and clearing
-    //if its' void
+    // Logic to connect recieving input value and store it and clearing
+    // if its' null
     useEffect(() => {
         if (query !== null) {
             window.sessionStorage.setItem("query", query);
@@ -15,7 +15,7 @@ function SearchBar(props){
         }
     }, [query])
 
-    //takes state and calling an App handler to fetch request
+    // Takes state and calling an App handler to fetch request
     const handleSearchWrapper = () => {
         props.handleSearch(query);
     }

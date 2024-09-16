@@ -13,18 +13,18 @@ class PlaylistList extends Component {
         this.setState({ playlistList: await Spotify.getUserPlaylists() })
     }
 
-    handleSelectPlaylistWrapper = (e) => { //handling logic of selector component
+    handleSelectPlaylistWrapper = (e) => { // Handling logic of selector component
         const index = e.target.selectedIndex;
         const el = e.target.childNodes[index];
         const option =  el.getAttribute('id');
-        this.props.onPlaylistSelect(option); //pushing choosed playlist tracks to App state
+        this.props.onPlaylistSelect(option); // Pushing choosed playlist tracks to App state
     }
 
     shouldComponentUpdate(nextProps, nextState) {
         // Rendering the component only if 
         // passed props value is changed
     
-        if (nextState.state !== this.state.playlistList) {
+        if (nextProps.state !== this.state.playlistList.length) {
             console.log("I'm called")
             return true;
         } else {

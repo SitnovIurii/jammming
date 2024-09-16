@@ -9,11 +9,11 @@ let _user_id = null;
 
 const Spotify = {
 
-  //1. Unauth state, no accessToken, no URL object available
-  //2. First action on page, no accessToken, URL object available
-  //3. Authorized, accessToken available
+  // 1. Unauth state, no accessToken, no URL object available
+  // 2. First action on page, no accessToken, URL object available
+  // 3. Authorized, accessToken available
 
-  //Auth function
+  // Auth function
   getAccessToken() {
     // If the accessToken already exists, do not waste time checking for it again
     if (_accessToken) {
