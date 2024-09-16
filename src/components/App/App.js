@@ -19,7 +19,7 @@ function App() {
 
   //Playlist control
   const [ playlistTracks, setPlaylist ] = useState([]);
-  //state which adds tracks everytime we adding tracks to selected(already exist) playlist
+  // State which adds tracks everytime we adding tracks to selected(already exist) playlist
   const [ tracksToAdd, setTracksToAdd ] = useState([]);
   //state which adds tracks which we want to remove from selected playlist
   const [ tracksToRemove, setTracksToRemove ] = useState([]);
