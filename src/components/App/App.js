@@ -47,11 +47,11 @@ function App() {
     addition same key tracks
   */ 
   function addTrack(trackToAdd) {
-    const trekUzheVnutriUI = playlistShownInUI.some(
+    const isTrackAlreadyWithinUI = playlistShownInUI.some(
       (existingTrack) => trackToAdd.id === existingTrack.id
     ); // true or false
 
-    if (trekUzheVnutriUI) {
+    if (isTrackAlreadyWithinUI) {
       // Track already exists in the playlist OR is going to be added; ignore
     } else {
       // Add track to the UI
