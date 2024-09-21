@@ -45,8 +45,8 @@ function Playlist(props) {
     }
 
     return (
-        <div id="Playlist" className="w-64 flex flex-col justify-center items-center">
-            <div>
+        <div id="Playlist" className="w-64 flex flex-col">
+            <div className="h-32 flex flex-col justify-center items-center">
                 <PlaylistList 
                     onPlaylistSelect={props.onPlaylistSelect}
                 />
@@ -61,7 +61,7 @@ function Playlist(props) {
                         >
                     </input>
                     <button type="submit" 
-                        className={"bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 border-primary border rounded-full items-center justify-center py-1 px-3 mb-4 text-center text-base font-medium text-white hover:border-[#1B44C8] disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5 active:bg-[#1B44C8] active:border-[#1B44C8]"}
+                        className={"bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 border-primary border rounded-full items-center justify-center py-1 px-3 text-center text-base font-medium text-white hover:border-[#1B44C8] disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5 active:bg-[#1B44C8] active:border-[#1B44C8]"}
                         >
                         Save
                     </button>
