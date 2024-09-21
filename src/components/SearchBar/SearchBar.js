@@ -21,7 +21,7 @@ function SearchBar(props){
     }
 
     return (
-        <div className="flex flex-col items-center self-center">
+        <div className="flex flex-col items-center self-center mb-4">
             <form onSubmit={handleSearchWrapper} className="flex flex-col w-52 items-center" id="SearchBarContainer">
                 <input 
                     type="text"
@@ -32,7 +32,7 @@ function SearchBar(props){
                     value={query}
                     required
                 />
-                <button type="submit" className='bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 border-primary border rounded-full items-center justify-center py-1 px-3 mb-4 text-center text-base font-medium text-white hover:border-[#1B44C8] disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5 active:bg-[#1B44C8] active:border-[#1B44C8]'>Search</button>
+                <button type="submit" className='bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 border-primary border rounded-full items-center justify-center py-1 px-3 text-center text-base font-medium text-white hover:border-[#1B44C8] disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5 active:bg-[#1B44C8] active:border-[#1B44C8]'>Search</button>
             </form>
         </div>
     )

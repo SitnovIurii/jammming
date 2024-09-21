@@ -1,10 +1,9 @@
 import './App.css';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchBar from '../SearchBar/SearchBar';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Spotify from '../../util/Spotify';
 import Playlist from '../Playlist/Playlist';
-import PlaylistList from '../PlaylistList/PlaylistList';
 
 
 function App() {
@@ -107,16 +106,14 @@ function App() {
             searchResult={searchResult}
             addTrack={addTrack}
           />
-          <div className="flex flex-col items-center w-64">
-            <PlaylistList
-              onPlaylistSelect={handleSelectPlaylist}
-            />
+          <div className="flex flex-col items-center w-64 justify-center content-center">
             <Playlist
               playlistID={playlistID}
               playlist={playlistShownInUI}
               onPlaylistSave={handlePlaylistSave} 
               removeTrack={removeTrack}
               handleAddAndRemove={handleAddAndRemoveFetch}
+              onPlaylistSelect={handleSelectPlaylist}
             />
           </div>
         </div>

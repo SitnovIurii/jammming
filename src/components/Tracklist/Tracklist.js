@@ -4,7 +4,7 @@ import Track from "../Track/Track.js";
 const Tracklist = (props) => {
     // All the tracks are passed from upstream through props.tracklistData
     return (
-        <div className="overflow-scroll h-96">
+        <div className="overflow-scroll h-96 w-full">
             {props.tracklistData.map((track) => (
                 <Track
                     key={track.id}
