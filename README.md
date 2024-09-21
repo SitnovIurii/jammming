@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Spotify Playlist Editor project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is one of the personal projects I've done as part of the Codecademy Full-Stack Engineer course. Live version of the website is going to be deployed soon; I am using this repo as practice ground for understanding git and Github as well.
 
-## Available Scripts
+## UI/UX
 
-In the project directory, you can run:
+The expected usage of the website is as follows:
+1. User authenticates their Spotify account, granting the app the ability to search tracks and modify Playlists
+2. User searches for the songs (tracks) they wish to save
+3. User selects whether they want to create a new playlist, or modify an existing one
+4. After adding tracks to the playlist, user presses the Save button
 
-### `npm start`
+UI is optimized, as much as possible, to streamline the user experience by automatically refreshing if the Spotify Access Token is expired and showing helpful success or error messages.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center">
+    <img src="img/UI_Token_Expiration_Confirm.png" width="450">
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Demo: TODO INSERT HERE
 
-### `npm test`
+## Code architecture
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The current structure is a result of several iterations and is inspired by the following resources:
 
-### `npm run build`
+1. [First React App -- Jamming](https://medium.com/@davies.matt.02/first-react-app-jamming-f98d9583e54c): a Medium article by Matthew Davies that includes very useful visualizations, such as:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![UI structure](img/UI_structure.jpg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. [Step-by-step Youtube guide for functional components](https://www.youtube.com/watch?v=BeZUvaACVEA)
+3. Hints and direction provided in the Codecademy lesson, including extra information for advanced feature requests (e.g. showing both new and existing playlists in the same UI, with an option to overwrite the existing one)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Having gone through these iterations, I have already encountered the problem of refactoring legacy code when trying to implement new features; but for me personally, that was one of the most fun parts of development, closer to the backend side of things.
 
-### `npm run eject`
+I'm also using Tailwind CSS to practice with CSS frameworks!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Spotify API
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The Spotify for Developers reference provides most information needed to create an app like this. In particular, I used:
+* Specific API endpoint pages to understand what data is passed and returned (e.g. [Create Playlist](https://developer.spotify.com/documentation/web-api/reference/create-playlist))
+* [Authorization Code Flow](https://developer.spotify.com/documentation/web-api/tutorials/code-flow) to understand two approaches to creating, managing and using access tokens
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The authorization in particular was one of the hardest parts to implement, particularly for such a frontend-only app, due to the access tokens expiring, being returned in a weird format, etc.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Due to the restrictions, it's not possible to use the deployed website without adding a particular user's Spotify token to the "[app](https://developer.spotify.com/documentation/web-api/tutorials/getting-started#create-an-app)" by myself. You will also need to create your personal token if trying to play around with the code locally:
 
-## Learn More
+screenshot of Spotify Authentication
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Running locally
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To test the project on your local machine, you need to simply run:
 
-### Code Splitting
+```
+npm install &&\
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The page will reload when any changes are made.
