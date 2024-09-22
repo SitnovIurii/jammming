@@ -1,6 +1,5 @@
 import './App.css';
 import SearchResults from '../SearchResults/SearchResults';
-import SearchBar from '../SearchBar/SearchBar';
 import React, { useState } from 'react';
 import Spotify from '../../util/Spotify';
 import Playlist from '../Playlist/Playlist';
@@ -96,26 +95,23 @@ function App() {
   }
 
   return (
-    <div className="h-full px-96 py-52 bg-cover bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500" style={{ height: "100%"}}>
-      <div className="flex flex-col">
-          <SearchBar
-            handleSearch={handleSearch}
-          />
+    <div className="h-full bg-cover bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500" style={{ height: "100%"}}>
+      <p className="text-5xl font-sans text-slate-200 h-16 w-full bg-indigo-800 rounded-b-lg flex items-center justify-center">Ja<span className="font-bold">mmm</span>ing</p>
+      <div className="px-96 py-40">
         <div className="flex justify-around">
           <SearchResults 
             searchResult={searchResult}
             addTrack={addTrack}
-          />
-          <div className="flex flex-col items-center w-64 justify-center content-center">
-            <Playlist
-              playlistID={playlistID}
-              playlist={playlistShownInUI}
-              onPlaylistSave={handlePlaylistSave} 
-              removeTrack={removeTrack}
-              handleAddAndRemove={handleAddAndRemoveFetch}
-              onPlaylistSelect={handleSelectPlaylist}
+            handleSearch={handleSearch}
             />
-          </div>
+          <Playlist
+            playlistID={playlistID}
+            playlist={playlistShownInUI}
+            onPlaylistSave={handlePlaylistSave} 
+            removeTrack={removeTrack}
+            handleAddAndRemove={handleAddAndRemoveFetch}
+            onPlaylistSelect={handleSelectPlaylist}
+            />
         </div>
       </div>
     </div>
