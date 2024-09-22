@@ -1,6 +1,6 @@
 # Spotify Playlist Editor project
 
-This is one of the personal projects I've done as part of the Codecademy Full-Stack Engineer course. Live version of the website is going to be deployed soon; I am using this repo as practice ground for understanding git and Github as well.
+This is one of the personal projects I've done as part of the Codecademy Full-Stack Engineer course. Live version of the website is [here](https://jammmingprojectapp.netlify.app/); I am using this repo as practice ground for understanding git and Github as well.
 
 ## UI/UX
 
