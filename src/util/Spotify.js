@@ -143,7 +143,7 @@ const Spotify = {
   },
 
   async getUserPlaylists() {
-    const accessToken = this.getAccessToken();
+    const accessToken = await this.getAccessToken();
     const user_id = await this.getCurrentUserId();
     const getUserPlaylistEndpoint = `https://api.spotify.com/v1/users/${user_id}/playlists`
     return fetch(getUserPlaylistEndpoint, {
