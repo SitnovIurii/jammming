@@ -52,9 +52,9 @@ function Playlist(props) {
 
     return (
         <div className="w-[400px] flex flex-col shrink-0 border-transparent rounded-md bg-indigo-800 p-5">
-            <div className="h-36 flex flex-col items-center">
+            <div className="h-40 flex flex-col items-center">
                 <form 
-                    className="flex flex-col items-center w-52 h-36 justify-evenly content-evenly"
+                    className="flex flex-col items-center w-52 h-full justify-evenly content-evenly"
                     >
                     <h1 className="font-bold text-2xl w-100% text-slate-200">Your Playlist</h1>
                     <PlaylistList 
