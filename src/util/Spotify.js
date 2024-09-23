@@ -2,7 +2,7 @@
 
 const urlForAuthorization = "https://accounts.spotify.com/authorize";
 const client_id = "1cea62a785744d299537437101200db9";
-const redirect_uri = "http://localhost:3000/";
+const redirect_uri = "https://jammmingprojectapp.netlify.app/";
 let _accessToken; // For internal check inside getAccessToken()
 const scope = "playlist-modify-public";
 let _user_id = null;
