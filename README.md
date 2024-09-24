@@ -16,6 +16,10 @@ UI is optimized, as much as possible, to streamline the user experience by autom
     <img src="img/UI_Token_Expiration_Confirm.png" width="450">
 </p>
 
+<p align="center">
+    <video src="img/WorkVideo-2024-09-23_22.23.57.mp4" width="450">
+</p>
+
 Demo: TODO INSERT HERE
 
 ## Code architecture
