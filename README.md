@@ -16,11 +16,15 @@ UI is optimized, as much as possible, to streamline the user experience by autom
     <img src="img/UI_Token_Expiration_Confirm.png" width="450">
 </p>
 
-<p align="center">
-    <img src="img/WorkVideo-2024-09-23_22.23.57.gif" width="450">
-</p>
 
-Demo: TODO INSERT HERE
+https://github.com/user-attachments/assets/c28741ce-53c3-4b48-9ed1-c131e5e7872a
+
+
+
+Future improvements:
+* Add saving searched and playlist tracks on page refresh
+* Re-render a select menu on saving new playlist
+* Add an album pic
 
 ## Code architecture
 
