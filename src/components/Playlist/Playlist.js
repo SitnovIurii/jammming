@@ -53,16 +53,16 @@ function Playlist(props) {
     return (
         <div className="w-[400px] flex flex-col shrink-0 border-transparent rounded-md bg-indigo-800 p-5">
             <div className="h-40 flex flex-col items-center">
-                <form 
-                    className="flex flex-col items-center w-52 h-full justify-evenly content-evenly"
+                <div 
+                    className="flex flex-col w-52 h-full justify-evenly items-center "
                     >
-                    <h1 className="font-bold text-2xl w-100% text-slate-200">Your Playlist</h1>
+                    <h1 className="font-bold text-2xl w-full text-slate-200 text-center">Your Playlist</h1>
                     <PlaylistList 
                         onPlaylistSelect={props.onPlaylistSelect}
                         />
                     <input 
                         id="playlistName"
-                        className={"w-full rounded-md border-0 py-0.5 pl-6 pr-6 text-gray-900 bg-gray-300 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:bg-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:opacity-85 sm:text-sm sm:leading-6 " +(props.playlistID ? "hidden" : "block opacity-60")}
+                        className={"w-full shadow-md bg-indigo-600 text-slate-200 rounded-md border-0 py-0.5 px-4 ring-transparent placeholder:text-slate-50/80 " +(props.playlistID ? "hidden" : "block")}
                         type="text" 
                         placeholder="New Playlist"
                         onKeyDown={handleKeyPress}
@@ -70,11 +70,11 @@ function Playlist(props) {
                     </input>
                     <button type="button" 
                         onClick={handlePlaylistSaveWrapper}
-                        className={"bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 border-primary border rounded-full items-center justify-center py-1 px-3 text-center text-base font-medium text-white hover:border-[#1B44C8] disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5 active:bg-[#1B44C8] active:border-[#1B44C8]"}
+                        className={"bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 rounded-full shadow-md items-center justify-center py-1 px-3 text-center text-base font-medium text-white hover:border-[#1B44C8] active:bg-[#1B44C8] active:border-[#1B44C8]"}
                         >
                         Save
                     </button>
-                </form>
+                </div>
             </div>
             <Tracklist 
                 tracklistData={props.playlist} 
