@@ -52,7 +52,7 @@ The authorization in particular was one of the hardest parts to implement, parti
 Due to the restrictions, it's not possible to use the deployed website without adding a particular user's Spotify token to the "[app](https://developer.spotify.com/documentation/web-api/tutorials/getting-started#create-an-app)" by myself. You will also need to create your personal token if trying to play around with the code locally:
 
 <p align="center">
-    <img src="img/Spotify-login.png" width="450">
+    <img src="img/Spotify_login.png" width="450">
 </p>
 
 ## Running locally
